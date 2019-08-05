@@ -1,12 +1,12 @@
 package com.icode.api.generation;
 
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import lombok.Data;
 import org.junit.Test;
@@ -100,7 +100,7 @@ public class AutoGeneration {
                 //实体是否为lombok模型（默认 false）
                 .setEntityLombokModel(dbConfig.getLombokModel())
                 //指定表名字段名是否使用下划线
-                .setDbColumnUnderline(true)
+                .setColumnNaming(NamingStrategy.underline_to_camel)
                 //数据库表映射到实体的命名策略
                 .setNaming(NamingStrategy.underline_to_camel)
                 //修改替换成你需要的表名，多个表名传数组
@@ -109,7 +109,7 @@ public class AutoGeneration {
         //4. 包名策略配置
         PackageConfig pkConfig = new PackageConfig();
         pkConfig.setParent(dbConfig.getPackageName())
-                .setController("controller")
+                .setController("config")
                 .setEntity("repository.entity");
 
         //5. 整合配置

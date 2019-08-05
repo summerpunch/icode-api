@@ -1,7 +1,7 @@
 package com.icode.api;
 
 import com.icode.api.repository.entity.CmsDictionary;
-import com.icode.api.service.ICmsDictionaryService;
+import com.icode.api.repository.mapper.CmsDictionaryMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class IcodeApiApplicationTests {
 
     @Autowired
-    private ICmsDictionaryService service;
+    private CmsDictionaryMapper mapper;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -24,7 +24,7 @@ public class IcodeApiApplicationTests {
         ////ResponseData data = service.getDictionaryTree();
         //	System.out.println(data);
 
-        CmsDictionary cmsDictionary = service.selectById(4);
+        CmsDictionary cmsDictionary = mapper.selectById(4);
 
         redisTemplate.opsForValue().set("f", cmsDictionary);
        // redisTemplate.delete("f");

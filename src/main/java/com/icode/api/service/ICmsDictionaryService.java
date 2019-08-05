@@ -1,6 +1,6 @@
 package com.icode.api.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.icode.api.common.response.ResponseData;
 import com.icode.api.repository.entity.CmsDictionary;
 

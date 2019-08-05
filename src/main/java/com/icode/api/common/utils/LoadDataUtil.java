@@ -1,10 +1,10 @@
 package com.icode.api.common.utils;
 
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.icode.api.common.constant.DictFinal;
 import com.icode.api.repository.entity.CmsDictionary;
-import com.icode.api.service.ICmsDictionaryService;
+import com.icode.api.repository.mapper.CmsDictionaryMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -261,11 +261,11 @@ public class LoadDataUtil {
      * Mail: summerpunch@163.com<br>
      * Date: 2019/2/28 16:20<br>
      */
-    public static List<CmsDictionary> initDictionary(ICmsDictionaryService cmsDictionaryService) {
-        EntityWrapper<CmsDictionary> wrapper = new EntityWrapper<>();
-        wrapper.orderBy(DictFinal.DICT_COLUMN_ITEM_LEVEL);
-        wrapper.orderBy(DictFinal.DICT_COLUMN_SORT);
-        List<CmsDictionary> listNodes = cmsDictionaryService.selectList(wrapper);
+    public static List<CmsDictionary> initDictionary(CmsDictionaryMapper mapper) {
+        QueryWrapper<CmsDictionary> wrapper = new QueryWrapper<>();
+        wrapper.orderByAsc(DictFinal.DICT_COLUMN_ITEM_LEVEL);
+        wrapper.orderByAsc(DictFinal.DICT_COLUMN_SORT);
+        List<CmsDictionary> listNodes = mapper.selectList(wrapper);
         if (!listNodes.isEmpty()) {
             LoadDataUtil.buildLocalCache(listNodes);
             return listNodes;

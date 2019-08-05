@@ -1,7 +1,7 @@
 package com.icode.api.repository.mapper;
 
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.icode.api.repository.entity.CmsDictionary;
 /**
  * Title: 数据字典 Mapper 接口<br>

@@ -3,7 +3,7 @@ package com.icode.api.common.response;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.NameFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.baomidou.mybatisplus.toolkit.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.springframework.validation.FieldError;
 
 import java.util.List;

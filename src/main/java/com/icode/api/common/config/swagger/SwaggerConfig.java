@@ -26,7 +26,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.icode.api.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.icode.api.config"))
                 .paths(PathSelectors.any())
                 .build();
     }

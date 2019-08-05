@@ -1,6 +1,6 @@
 package com.icode.api.common.response;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 
 /**
@@ -14,7 +14,7 @@ import lombok.Data;
 public class ResponseDataTable {
 
     private boolean success;
-    private int total;
+    private long total;
     private Object data;
 
 
