@@ -68,5 +68,4 @@ public class CmsDictionaryDTO implements Serializable {
      */
     @ApiModelProperty(name = "adminUpdate",value = "更新人员")
     private Integer adminUpdate;
-
 }

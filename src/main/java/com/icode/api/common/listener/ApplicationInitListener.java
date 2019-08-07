@@ -1,5 +1,7 @@
 package com.icode.api.common.listener;
 
+import com.icode.api.common.constant.CustomFinal;
+import com.icode.api.common.constant.SystemFinal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -30,6 +32,8 @@ public class ApplicationInitListener implements ApplicationListener<ApplicationR
         DictionaryClientHandle dictionaryClientHandle = applicationContext.getBean(DictionaryClientHandle.class);
 
         if (profiles != null && profiles.length > 0) {
+            CustomFinal.CUSTOM_ENVIRONMENT_PROFILES_KEY_MD5_PREFIX = String.format(CustomFinal.CUSTOM_ENVIRONMENT_PROFILES_KEY_MD5_PREFIX, profiles[0], SystemFinal.SYSTEM_CONNECT_SYMBOL_COLON);
+
             dictionaryClientHandle.loadLocalData(applicationContext, profiles[0]);
         } else {
             LOGGER.error("Spring Boot Application Load Profiles Error!");

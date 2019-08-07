@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class CmsDictionaryQo extends BaseQo implements Serializable {
+public class CmsDictionaryQO extends BaseQO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

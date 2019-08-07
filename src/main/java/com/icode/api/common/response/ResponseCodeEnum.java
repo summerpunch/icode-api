@@ -44,7 +44,6 @@ public enum ResponseCodeEnum {
      */
     UNIQUENESS_EXCEPTION(4002, "Uniqueness Error"),
 
-
     /**
      * Title: 拒绝访问<br>
      * Description: <br>
@@ -64,7 +63,7 @@ public enum ResponseCodeEnum {
     URL_INVALID_ERROR(4004, "URL Not Found"),
 
     /**
-     * Title: 参数校验错误<br>
+     * Title: 空指针异常<br>
      * Description: <br>
      * Author: XiaChong<br>
      * Mail: summerpunch@163.com<br>
@@ -97,7 +96,49 @@ public enum ResponseCodeEnum {
      * Mail: summerpunch@163.com<br>
      * Date: 2018/8/13 19:06<br>
      */
-    SERVICE_BUSINESS_ERROR(5000, "Service Business Error");
+    SERVICE_BUSINESS_ERROR(5000, "Service Business Error"),
+    /**
+     * 运行时异常
+     */
+    RuntimeException(4012, "isv.runtime_exception"),
+
+    /**
+     *
+     */
+    ClassCastException(4014, "isv.class_cast_exception"),
+    /**
+     * Title: IO异常<br>
+     * Description: <br>
+     * Author: XiaChong<br>
+     * Mail: summerpunch@163.com<br>
+     * Date: 2019/8/5 18:23<br>
+     */
+    IOException(4015, "isv.io_exception"),
+    /**
+     * Title: 未知方法异常<br>
+     * Description: <br>
+     * Author: XiaChong<br>
+     * Mail: summerpunch@163.com<br>
+     * Date: 2019/8/5 18:23<br>
+     */
+    NoSuchMethodException(4016, "isv.no_such_method_exception"),
+    /**
+     * Title: 数组越界异常<br>
+     * Description: <br>
+     * Author: XiaChong<br>
+     * Mail: summerpunch@163.com<br>
+     * Date: 2019/8/5 18:23<br>
+     */
+    IndexOutOfBoundsException(4017, "isv.index_out_of_bounds_exception"),
+
+    /**
+     * 400错误
+     */
+    HttpMessageNotReadableException(4018, "isv.http_message_not_readable_exception"),
+    /**
+     * 500错误
+     */
+    ConversionNotSupportedException(4022, "isv.conversion_not_supported_exception");
 
     private int code;
     private String describe;

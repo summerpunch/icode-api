@@ -1,65 +1,65 @@
 package com.icode.api.common.response.tree;
 
-import com.icode.api.repository.entity.CmsDictionary;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class DictionaryTreeNode implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     private Integer id;
-    private String text;
-    private Integer parentId;
-    private List<DictionaryTreeNode> nodes;
-
-
-    public void setTreeNode(CmsDictionary cd) {
-        if (cd != null) {
-            DictionaryTreeNode node = new DictionaryTreeNode();
-            node.setId(cd.getId());
-            node.setParentId(cd.getParentId());
-            node.setText(cd.getItemNamecn());
-            setNode(node);
-        }
-    }
-
-    private void setNode(DictionaryTreeNode node) {
-        if (node.getParentId() == 0) {
-            this.setId(node.getId());
-            this.setParentId(node.getParentId());
-            this.setText(node.getText());
-        } else {
-            this.setNodes(facadeChildNode(this, node));
-        }
-    }
-
     /**
-     * Title: 递归找到父节点填充数据<br>
-     * Description: <br>
-     * Author: XiaChong<br>
-     * Mail: summerpunch@163.com<br>
-     * Date: 2019/3/8 14:45<br>
+     * 父节点 id
      */
-    private List<DictionaryTreeNode> facadeChildNode(DictionaryTreeNode thisNodes, DictionaryTreeNode node) {
-        if (thisNodes.getId().equals(node.getParentId())) {
-            List<DictionaryTreeNode> nodes = thisNodes.getNodes();
-            if (null == nodes) {
-                nodes = new ArrayList<>();
-            }
-            nodes.add(node);
-            thisNodes.setNodes(nodes);
-        } else {
-            List<DictionaryTreeNode> nodes = thisNodes.getNodes();
-            if (null != nodes) {
-                for (DictionaryTreeNode data : nodes) {
-                    this.setNodes(facadeChildNode(data, node));
-                }
-            }
-        }
-        return this.getNodes();
-    }
+    private Integer parentId;
+    /**
+     * 字典key：枚举形式的唯一key
+     */
+    private String itemKey;
+
+    private Integer itemLevel;
+    /**
+     * 字典值：枚举key对应的value，此值并不能作为外键用，一般用于配置项对应的值，而表关联则用字典主键id，
+     */
+    private String itemValue;
+    /**
+     * 字典中文名称
+     */
+    private String itemNamecn;
+    /**
+     * 顺序
+     */
+    private Integer sort;
+    /**
+     * 状态：启用、禁用（废弃）
+     */
+    private Integer status;
+    /**
+     * 备注：具体用途细节等
+     */
+    private String description;
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
+    /**
+     * 创建人员
+     */
+    private Integer adminCreate;
+    /**
+     * 更新人员
+     */
+    private Integer adminUpdate;
+    /**
+     * 子节点
+     */
+    private List<DictionaryTreeNode> nodes;
 }

@@ -3,8 +3,7 @@ package com.icode.api.common.listener;
 import com.alibaba.fastjson.JSON;
 import com.icode.api.common.utils.LoadDataUtil;
 import com.icode.api.repository.entity.CmsDictionary;
-import com.icode.api.repository.mapper.CmsDictionaryMapper;
-import com.icode.api.service.ICmsDictionaryService;
+import com.icode.api.service.impl.CmsDictionaryServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -32,8 +31,8 @@ public class DictionaryClientHandle {
      * Date: 2019/2/28 15:54<br>
      */
     public String loadDictionaryFromDB(ConfigurableApplicationContext applicationContext) {
-        CmsDictionaryMapper mapper = applicationContext.getBean(CmsDictionaryMapper.class);
-        List<CmsDictionary> list = LoadDataUtil.initDictionary(mapper);
+        CmsDictionaryServiceImpl service = applicationContext.getBean(CmsDictionaryServiceImpl.class);
+        List<CmsDictionary> list = LoadDataUtil.initDictionary(service);
         if (!list.isEmpty()) {
             return JSON.toJSONString(list);
         }

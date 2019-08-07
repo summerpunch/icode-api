@@ -1,13 +1,18 @@
 package com.icode.api.common.config.exception;
 
+import com.alibaba.fastjson.JSON;
 import com.icode.api.common.response.ResponseCodeEnum;
 import com.icode.api.common.response.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.ConversionNotSupportedException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+import java.io.IOException;
 
 
 /**
@@ -73,5 +78,32 @@ public class GlobalExceptionHandler {
         responseData.setMsg("GlobalExceptionHandler.Exception");
         responseData.setSuccess(false);
         return responseData;
+    }
+
+    public static String serviceExceptionHandler(Exception ex) {
+        LOGGER.error("====serviceExceptionHandler", ex);
+        ResponseData responseData = new ResponseData();
+        responseData.setMsg(ex.getMessage());
+        responseData.setSuccess(false);
+        if (ex instanceof NullPointerException) {
+            responseData.setCode(ResponseCodeEnum.NULL_EXCEOTION.getCode());
+        } else if (ex instanceof ClassCastException) {
+            responseData.setCode(ResponseCodeEnum.ClassCastException.getCode());
+        } else if (ex instanceof IOException) {
+            responseData.setCode(ResponseCodeEnum.IOException.getCode());
+        } else if (ex instanceof NoSuchMethodException) {
+            responseData.setCode(ResponseCodeEnum.NoSuchMethodException.getCode());
+        } else if (ex instanceof IndexOutOfBoundsException) {
+            responseData.setCode(ResponseCodeEnum.IndexOutOfBoundsException.getCode());
+        } else if (ex instanceof HttpMessageNotReadableException) {
+            responseData.setCode(ResponseCodeEnum.HttpMessageNotReadableException.getCode());
+        } else if (ex instanceof ConversionNotSupportedException) {
+            responseData.setCode(ResponseCodeEnum.ConversionNotSupportedException.getCode());
+        } else if (ex instanceof RuntimeException) {
+            responseData.setCode(ResponseCodeEnum.RuntimeException.getCode());
+        } else if (ex instanceof Exception) {
+            responseData.setCode(ResponseCodeEnum.SERVICE_BUSINESS_ERROR.getCode());
+        }
+        return JSON.toJSONString(responseData);
     }
 }

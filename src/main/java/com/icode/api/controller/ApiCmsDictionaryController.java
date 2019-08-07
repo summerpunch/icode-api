@@ -1,8 +1,10 @@
 package com.icode.api.controller;
 
 
-import com.icode.api.common.response.ResponseData;
+import com.icode.api.common.constant.SystemFinal;
+import com.icode.api.common.response.tree.DictionaryTreeNode;
 import com.icode.api.repository.dto.CmsDictionaryDTO;
+import com.icode.api.repository.entity.CmsDictionary;
 import com.icode.api.service.ICmsDictionaryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,21 +31,37 @@ public class ApiCmsDictionaryController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApiCmsDictionaryController.class);
 
-    private final static String PRODUCES_JSON = "application/json;charset=UTF-8";
-
     @Autowired
     private ICmsDictionaryService service;
 
-    @GetMapping(value = "/get/dictionaryById/{id}", produces = PRODUCES_JSON)
+    @GetMapping(value = "/get/dictionaryById/{id}", produces = SystemFinal.SYSTEM_PRODUCES_JSON)
     @ApiOperation(value = "按id查询数据字典信息接口", response = CmsDictionaryDTO.class)
-    public ResponseData gatDictionaryById(@ApiParam(name = "id", value = "id", required = true) @PathVariable("id") Integer id) {
+    public String gatDictionaryById(@ApiParam(name = "id", value = "id", required = true) @PathVariable("id") Integer id) {
         return service.gatDictionaryById(id);
     }
 
-    @GetMapping(value = "/get/dictionaryListByParentId/{parentId}", produces = PRODUCES_JSON)
+    @GetMapping(value = "/get/dictionaryListByParentId/{parentId}", produces = SystemFinal.SYSTEM_PRODUCES_JSON)
     @ApiOperation(value = "按ParentId查询子节点接口", response = CmsDictionaryDTO.class)
-    public ResponseData gatDictionaryListByParentId(@ApiParam(name = "parentId", value = "parentId", required = true) @PathVariable("parentId") Integer parentId) {
+    public String gatDictionaryListByParentId(@ApiParam(name = "parentId", value = "parentId", required = true) @PathVariable("parentId") Integer parentId) {
         return service.gatDictionaryListByParentId(parentId);
+    }
+
+    @GetMapping(value = "/get/treePlugDictionary/{parentId}", produces = SystemFinal.SYSTEM_PRODUCES_JSON)
+    @ApiOperation(value = "获取数据字典结构树", response = DictionaryTreeNode.class)
+    public String getTreePlugDictionary(@ApiParam(name = "parentId", value = "parentId", defaultValue = "0") @PathVariable("parentId") Integer parentId) {
+        return service.getTreePlugDictionary(parentId);
+    }
+
+    @GetMapping(value = "/get/treeDictionary/{parentId}", produces = SystemFinal.SYSTEM_PRODUCES_JSON)
+    @ApiOperation(value = "获取数据字典结构树", response = DictionaryTreeNode.class)
+    public String getTreeDictionary(@ApiParam(name = "parentId", value = "parentId", defaultValue = "0") @PathVariable("parentId") Integer parentId) {
+        return service.getTreeDictionary(parentId);
+    }
+
+    @GetMapping(value = "/get/AllDictionary", produces = SystemFinal.SYSTEM_PRODUCES_JSON)
+    @ApiOperation(value = "获取所有数据字典", response = CmsDictionary.class)
+    public String getAllDictionary() {
+        return service.getAllDictionary();
     }
 
 
