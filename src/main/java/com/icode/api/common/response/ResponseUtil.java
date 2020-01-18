@@ -32,7 +32,13 @@ public class ResponseUtil {
      * Date: 2019/3/11 10:35<br>
      */
     private static String toJSON(Object obj) {
-        return JSON.toJSONString(obj, ResponseUtil.nameFilterFormit(), SerializerFeature.WriteMapNullValue, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.DisableCircularReferenceDetect);
+        return JSON.toJSONString(
+                obj,
+                ResponseUtil.nameFilterFormit(),
+                SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteNullListAsEmpty,
+                SerializerFeature.WriteNullStringAsEmpty,
+                SerializerFeature.DisableCircularReferenceDetect);
     }
 
     /**
@@ -42,7 +48,7 @@ public class ResponseUtil {
      * Mail: summerpunch@163.com<br>
      * Date: 2019/3/11 10:48<br>
      */
-    public static NameFilter nameFilterFormit() {
+    private static NameFilter nameFilterFormit() {
         return (Object object, String name, Object value) -> {
             //按下划线拆分
             return Character.isLowerCase(name.charAt(0)) ? StringUtils.camelToUnderline(name) : name;

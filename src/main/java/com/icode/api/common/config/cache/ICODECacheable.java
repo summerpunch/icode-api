@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Target(value = {ElementType.METHOD, ElementType.TYPE})
 public @interface ICODECacheable {
 
-    String region() default CustomFinal.CUSTOM_CUSTOM_PROJECT_CACHE;
+    String region() default CustomFinal.CUSTOM_PROJECT_CACHE;
 
     /**
      * Title: 默认使用包名+方法名+参数<br>

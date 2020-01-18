@@ -9,6 +9,7 @@ import com.icode.api.service.ICmsDictionaryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,6 +28,7 @@ public class CmsDictionaryServiceImpl extends ServiceImpl<CmsDictionaryMapper, C
     private CmsDictionaryMapper mapper;
 
     @Override
+    @Cacheable(value = "gatDictionaryById")
     public String gatDictionaryById(Integer id) {
         return ResponseUtil.toSuccessJSON(LoadDataUtil.getDicDataById(id));
     }

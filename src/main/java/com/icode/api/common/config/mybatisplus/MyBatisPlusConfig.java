@@ -2,6 +2,7 @@ package com.icode.api.common.config.mybatisplus;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.icode.api.common.constant.CustomFinal;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * Date: 2019/3/6 10:02<br>
  */
 @Configuration
-@MapperScan("com.icode.api.repository.mapper*")
+@MapperScan(CustomFinal.CUSTOM_PROJECT_MYBATISPLUS_SCAN_PATH)
 public class MyBatisPlusConfig {
 
     /**
